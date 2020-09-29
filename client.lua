@@ -8,7 +8,7 @@ end
 
 function IsInGuarma()
 	local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
-	return x >= 500 and y <= -4100
+	return x >= 0 and y <= -4096
 end
 
 local GuarmaMode = not IsInGuarma()
