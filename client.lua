@@ -11,24 +11,24 @@ function IsInGuarma()
 	return x >= 0 and y <= -4096
 end
 
-local GuarmaMode = not IsInGuarma()
+local GuarmaMode = false
 
 CreateThread(function()
 	while true do
-		Wait(0)
+		Wait(500)
 
 		if IsInGuarma() then
 			if not GuarmaMode then
 				SetGuarmaWorldhorizonActive(true);
 				SetWorldWaterType(1);
+				GuarmaMode = true
 			end
-			GuarmaMode = true
 		else
 			if GuarmaMode then
 				SetGuarmaWorldhorizonActive(false);
 				SetWorldWaterType(0);
+				GuarmaMode = false
 			end
-			GuarmaMode = false
 		end
 	end
 end)
