@@ -6,6 +6,10 @@ function SetWorldWaterType(waterType)
 	Citizen.InvokeNative(0xE8770EE02AEE45C2, waterType)
 end
 
+function SetWorldMapType(mapType)
+	Citizen.InvokeNative(0xA657EC9DBC6CC900, mapType)
+end
+
 function IsInGuarma()
 	local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
 	return x >= 0 and y <= -4096
@@ -21,12 +25,14 @@ CreateThread(function()
 			if not GuarmaMode then
 				SetGuarmaWorldhorizonActive(true);
 				SetWorldWaterType(1);
+				SetWorldMapType(`guarma`)
 				GuarmaMode = true
 			end
 		else
 			if GuarmaMode then
 				SetGuarmaWorldhorizonActive(false);
 				SetWorldWaterType(0);
+				SetWorldMapType(`world`)
 				GuarmaMode = false
 			end
 		end
